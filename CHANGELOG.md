@@ -1,4 +1,13 @@
-# 0.1.0 (2021-10-31)
+## [0.1.1](https://github.com/Mr-Destructive/crossposter/compare/v0.1.0...v0.1.1) (2021-11-01)
+
+
+### Bug Fixes
+
+* supports hardline breaks for markdown ([5f4ae28](https://github.com/Mr-Destructive/crossposter/commit/5f4ae28d4fbe77b33d6376b86b79f56576ed9c76))
+
+
+
+# [0.1.0](https://github.com/Mr-Destructive/crossposter/compare/305f58a93be50422a2775c715aa831ec6750a0e0...v0.1.0) (2021-10-31)
 
 
 ### Features
