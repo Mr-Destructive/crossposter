@@ -6,19 +6,22 @@ function dev()
         read -p "Enter the dev.to API key : " dev_key
         sed -i "/dev.to:/ s/$/$dev_key/" $keys
     fi
-curl -s -X POST -H "Content-Type: application/json" \
-  -H "api-key: $dev_key" -d "{\"article\":{\"body_markdown\":\"$body\"}}" \
-  https://dev.to/api/articles
+
+    curl -s -X POST -H "Content-Type: application/json" \
+      -H "api-key: $dev_key" -d "{\"article\":{\"body_markdown\":\"$body\"}}" \
+      https://dev.to/api/articles
 
     if [[ $? ]];then 
         echo -e "\nPosted on dev.to\n"
     else
         echo -e "Error...\nFailed to post on dev.to"
     fi
+
 }
 
 function hashnode()
 {
+
     if [[ -z $(sed -n -e 's/.*hashnode://p' $keys ) ]]; then
         read -p "Enter the hashnode.com token : " hashtoken
         sed -i "/hashnode:/ s/$/$hashtoken/" $keys
@@ -31,9 +34,11 @@ function hashnode()
         sed -i "/hashnode_id:/ s/$/$hash_id/" $keys
     fi
 
-    
-
-    awk '{print $0"\\r\\n"}' temp.txt >temp.md
+    cat $file | sed '1,9{/^---/!{/^\---/!d}}' | sed '1,2d' >temp.txt
+    cat temp.txt | awk '{print $0" "}' >temp.txt
+    sed -i '/^- / s/$/\\r\\n/g' temp.txt
+    sed -i '/^[0-9]. / s/$/\\r\\n/' temp.txt
+    sed 's/$/\\r\\n\\r\\n/g' temp.txt >temp.md
     cat temp.md | tr -d '\r\n' | sed 's/\\r\\n/<br>/g' >body.md
     body=$(cat body.md)
     
@@ -49,10 +54,12 @@ function hashnode()
     else
         echo -e "Error...\nFailed to post on hashnode.com"
     fi
+
 }
 
 function medium()
 {
+
     if [[ -z $(sed -n -e 's/.*ium://p' $keys ) ]]; then
         read -p "Enter the medium.com API token : " med_token
         med_id=$(curl -s -H "Authorization: Bearer $med_token" https://api.medium.com/v1/me | json_pp >temp.json)
@@ -69,12 +76,16 @@ function medium()
     else
         mstatus="draft"
     fi
-	sed -i "1a # $title" temp.txt	
-	sed -i "1a ![]($cover_image)" temp.txt
-	sed -i "2a ## $subtitle" temp.txt	
 
+    awk '{print $0" "}' $file >temp.txt
+    cat temp.txt | sed '1,10{/^---/!{/^\---/!d}}' | sed '1,2d' >temp.txt
+	sed -i "1a # $title\\r\\n" temp.txt	
+	sed -i "2a $subtitle\\r\\n" temp.txt	
+	sed -i "2a ![]($cover_image)" temp.txt
     
-	awk '{print $0"\\r\\n"}' temp.txt >temp.md
+    sed -i '/^- / s/$/\\r\\n/g' temp.txt
+    sed -i '/^[0-9]. / s/$/\\r\\n/' temp.txt
+    awk '!NF{$0="\\r\\n\\r\\n"}1' temp.txt >temp.md
 	cat temp.md | tr -d '\r\n' > body.md
 	body=$(cat body.md)
 
@@ -88,6 +99,7 @@ function medium()
     else
         echo -e "Error...\nFailed to post on medium.com"
     fi
+
 }
 
 
@@ -134,9 +146,12 @@ tags=$(sed -n '5 s/^[^=]*tags: *//p' $file)
 canonical_url=$(sed -n '6 s/^[^=]*url: *//p' $file)
 cover_image=$(sed -n '7 s/^[^=]*age: *//p' $file)
 
-cat $file | sed '1,10{/^---/!{/^\---/!d}}' | sed '1,2d' >temp.txt
-awk '{print $0"\\r\\n"}' $file >temp.md
-cat temp.md | tr -d '\r\n' > body.md
+awk '{print $0" "}' $file >temp.txt
+sed -i '1,+7 s/$/\\r\\n/g' temp.txt
+sed -i '/^- / s/$/\\r\\n/g' temp.txt
+sed -i '/^[0-9]. / s/$/\\r\\n/' temp.txt
+awk '!NF{$0="\\r\\n\\r\\n"}1' temp.txt >temp.md
+cat temp.md | tr -d '\r\n' >body.md
 body=$(cat body.md)
 
 
@@ -175,4 +190,4 @@ else
 	echo "Invalid Input"	
 fi
 
-rm temp.md temp.txt body.md 
+rm temp.md temp.txt body.md
