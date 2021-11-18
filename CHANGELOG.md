@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/Mr-Destructive/crossposter/compare/v0.1.1...v0.2.0) (2021-11-18)
+
+
+### Features
+
+* Added support for Codeewbie post ([a57ac92](https://github.com/Mr-Destructive/crossposter/commit/a57ac9244ab79d06bd9cdb300238b5a7aa82a3fc))
+
+
+
 ## [0.1.1](https://github.com/Mr-Destructive/crossposter/compare/v0.1.0...v0.1.1) (2021-11-01)
 
 
