@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/Mr-Destructive/crossposter/compare/v0.2.0...v0.2.1) (2021-11-19)
+
+
+### Bug Fixes
+
+* organized folder structure ([b3d57aa](https://github.com/Mr-Destructive/crossposter/commit/b3d57aa836fced55b588376eb7e0c8508b447abb))
+
+
+
 # [0.2.0](https://github.com/Mr-Destructive/crossposter/compare/v0.1.1...v0.2.0) (2021-11-18)
 
 
