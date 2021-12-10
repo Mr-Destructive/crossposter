@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/Mr-Destructive/crossposter/compare/v0.2.1...v0.2.2) (2021-12-10)
+
+
+### Bug Fixes
+
+* added a single shellscript  ([34e39ba](https://github.com/Mr-Destructive/crossposter/commit/34e39baea465c306cc6e5d7dd153e3c467472719))
+
+
+
 ## [0.2.1](https://github.com/Mr-Destructive/crossposter/compare/v0.2.0...v0.2.1) (2021-11-19)
 
 
