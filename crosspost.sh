@@ -182,7 +182,7 @@ read -p "Where you want to cross post to? " num
 
 if [[ $num -eq 1 ]];then
 
-    dev
+    python dev.py
 
 elif [[ $num -eq 2 ]];then
 
