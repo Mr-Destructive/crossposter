@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/Mr-Destructive/crossposter/compare/v0.2.2...v0.2.3) (2022-01-07)
+
+
+### Bug Fixes
+
+* added python script for devto ([e830f14](https://github.com/Mr-Destructive/crossposter/commit/e830f148f00f2b2cb54dd00530616400471c048f))
+
+
+
 ## [0.2.2](https://github.com/Mr-Destructive/crossposter/compare/v0.2.1...v0.2.2) (2021-12-10)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * supports hardline breaks for markdown ([5f4ae28](https://github.com/Mr-Destructive/crossposter/commit/5f4ae28d4fbe77b33d6376b86b79f56576ed9c76))
-
-
-
-# [0.1.0](https://github.com/Mr-Destructive/crossposter/compare/305f58a93be50422a2775c715aa831ec6750a0e0...v0.1.0) (2021-10-31)
-
-
-### Features
-
-* Initial commit ([305f58a](https://github.com/Mr-Destructive/crossposter/commit/305f58a93be50422a2775c715aa831ec6750a0e0))
 
 
 
