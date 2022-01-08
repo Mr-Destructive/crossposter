@@ -182,7 +182,12 @@ read -p "Where you want to cross post to? " num
 
 if [[ $num -eq 1 ]];then
 
-    python dev.py
+    if [[ -z $(sed -n -e 's/.*to://p' $keys) ]];then
+        read -p "Enter the dev.to API key : " dev_key
+        sed -i "/to:/ s/$/$dev_key/" $keys
+    fi
+
+    python python/dev.py $file
 
 elif [[ $num -eq 2 ]];then
 
@@ -205,7 +210,12 @@ elif [[ $num -eq 5 ]];then
 
 elif [[ $num -eq 6 ]];then
 
-    codenewbie
+    if [[ -z $(sed -n -e 's/.*codenewbie://p' $keys) ]];then
+            read -p "Enter the codenewbie API key : " codenbkeys
+            sed -i "/codenewbie:/ s/$/$codenbkeys/" $keys
+    fi
+
+    python python/codenewbie.py $file
 
 else
 	echo "Invalid Input"	
