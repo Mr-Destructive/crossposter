@@ -1,3 +1,12 @@
+## [0.2.4](https://github.com/Mr-Destructive/crossposter/compare/v0.2.3...v0.2.4) (2022-01-08)
+
+
+### Bug Fixes
+
+* added python script for codenewbie ([fff2b2c](https://github.com/Mr-Destructive/crossposter/commit/fff2b2c6f2784ea4743c03014f6281c729d5ea11))
+
+
+
 ## [0.2.3](https://github.com/Mr-Destructive/crossposter/compare/v0.2.2...v0.2.3) (2022-01-07)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Added support for Codeewbie post ([a57ac92](https://github.com/Mr-Destructive/crossposter/commit/a57ac9244ab79d06bd9cdb300238b5a7aa82a3fc))
-
-
-
-## [0.1.1](https://github.com/Mr-Destructive/crossposter/compare/v0.1.0...v0.1.1) (2021-11-01)
-
-
-### Bug Fixes
-
-* supports hardline breaks for markdown ([5f4ae28](https://github.com/Mr-Destructive/crossposter/commit/5f4ae28d4fbe77b33d6376b86b79f56576ed9c76))
 
 
 
