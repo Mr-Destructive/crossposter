@@ -100,6 +100,7 @@ function codenewbie()
         echo -e "Error...\nFailed to post on dev.to"
     fi
 }
+
 touch keys.txt body.md temp.md temp.txt
 keys=keys.txt
 
@@ -187,7 +188,7 @@ if [[ $num -eq 1 ]];then
         sed -i "/to:/ s/$/$dev_key/" $keys
     fi
 
-    python python/dev.py $file
+    dev
 
 elif [[ $num -eq 2 ]];then
 
@@ -215,7 +216,7 @@ elif [[ $num -eq 6 ]];then
             sed -i "/codenewbie:/ s/$/$codenbkeys/" $keys
     fi
 
-    python python/codenewbie.py $file
+    codenewbie
 
 else
 	echo "Invalid Input"	
