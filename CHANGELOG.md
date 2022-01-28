@@ -1,3 +1,12 @@
+## [0.2.5](https://github.com/Mr-Destructive/crossposter/compare/v0.2.4...v0.2.5) (2022-01-28)
+
+
+### Bug Fixes
+
+* moving from sh to py ([71ea64e](https://github.com/Mr-Destructive/crossposter/commit/71ea64e23d4b3ad1851fa583ee42d6eca057986b))
+
+
+
 ## [0.2.4](https://github.com/Mr-Destructive/crossposter/compare/v0.2.3...v0.2.4) (2022-01-08)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * organized folder structure ([b3d57aa](https://github.com/Mr-Destructive/crossposter/commit/b3d57aa836fced55b588376eb7e0c8508b447abb))
-
-
-
-# [0.2.0](https://github.com/Mr-Destructive/crossposter/compare/v0.1.1...v0.2.0) (2021-11-18)
-
-
-### Features
-
-* Added support for Codeewbie post ([a57ac92](https://github.com/Mr-Destructive/crossposter/commit/a57ac9244ab79d06bd9cdb300238b5a7aa82a3fc))
 
 
 
