@@ -1,3 +1,12 @@
+## [0.2.6](https://github.com/Mr-Destructive/crossposter/compare/v0.2.5...v0.2.6) (2022-02-01)
+
+
+### Bug Fixes
+
+* added py docs, script file positional paramter ([e7d290c](https://github.com/Mr-Destructive/crossposter/commit/e7d290c03c47c19ed817a2eae6d29fecc2132b32))
+
+
+
 ## [0.2.5](https://github.com/Mr-Destructive/crossposter/compare/v0.2.4...v0.2.5) (2022-01-28)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * added a single shellscript  ([34e39ba](https://github.com/Mr-Destructive/crossposter/commit/34e39baea465c306cc6e5d7dd153e3c467472719))
-
-
-
-## [0.2.1](https://github.com/Mr-Destructive/crossposter/compare/v0.2.0...v0.2.1) (2021-11-19)
-
-
-### Bug Fixes
-
-* organized folder structure ([b3d57aa](https://github.com/Mr-Destructive/crossposter/commit/b3d57aa836fced55b588376eb7e0c8508b447abb))
 
 
 
