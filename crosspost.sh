@@ -120,7 +120,12 @@ else
     codenbkeys=$(sed -n -e 's/codenewbie://p' $keys)
 fi
 
-read -p "Enter the name of the file : " file
+if [[ -n $1 ]];
+then
+    file=$1
+else
+    read -p "Enter the name of the file : " file
+fi
 
 if [[ -z $(sed '/^---/p;q' $file) ]];then
     read -p "Enter the title of your post : " title

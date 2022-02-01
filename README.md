@@ -2,13 +2,30 @@
 
 > Crosspost your articles to dev.to/medium.com/hashnode.com from the command line
 
-Crosspost.sh is a shellscript(BASH) to automate crossposting to platforms like dev.to, medium.com and hashnode.com. The script takes in markdown version of your post with a few inputs from you and posts it to those platforms. You would require a token/key for each of those platforms to post it from the command line.
+- Crossposter is a shellscript(BASH) to automate crossposting to platforms like dev.to, medium.com and hashnode.com. The script takes in markdown version of your post with a few inputs from you and posts it to those platforms. You would require a token/key for each of those platforms to post it from the command line.
+
+There are two versions of the script:
+
+- [Shellscript](#crossposter-shell-script) (BASH)
+- [Python](#crossposter-python-script)
 
 The actual script is still not perfect (has a few bugs). Though it posts on `dev.to` and `medium.com` easily, the `hashnode.com` is buggy as it parses the raw markdown into the post and doesn't render as desired. So, **its a under-development script**, fell free to raise any issues or PRs on the official GitHub repo.   
 
+## Crossposter Shell Script
+
+The crossposter shell script is a file to be used from a linux/unix command line in a shell environment. The procedure to execute the file is as follows:
+
 Run the script on a bash interpreter with the command:
 
-`bash crosspost.sh`
+```
+bash crosspost.sh
+```
+
+OR
+
+```
+bash crosspost.sh file_name.md
+```
 
 For posting the article you need to provide the following details:
 
@@ -86,4 +103,24 @@ Now, once you have configured every thing, you can opt for the `4` choice that i
 
 This is not a perfect script and has a lot of bugs due to encoding the markdown in BASH. It is subject to improve over time as I get to understand more string manipulation in BASH and render the post as expected. Please feel free to open up a genuine and smallest of issues. 
 
+## Crossposter Python Script
+
+A python version of the Crossposter script is in development, it currently supports posting on [dev.to](https://github.com/Mr-Destructive/crossposter/blob/main/python/dev.py) and [codenewbie community](https://github.com/Mr-Destructive/crossposter/blob/main/python/codenewbie.py). Support for hashnode and medium is in pipeline and will be updated soon. 
+
+[crossposter.py](https://github.com/Mr-Destructive/crossposter/tree/main/python)
+
+Dependencies for the python script:
+
+- [requests](https://docs.python-requests.org/en/latest/user/install/#install) 
+
+Running the script:
+
+- Make sure to copy the copy the python folder from the [GitHub repo](https://github.com/Mr-Destructive/crossposter/tree/main/python).
+- Create the markdown file in that directory and enter the front-matter in the file.
+- Run the main `app.py` file along with the name of the markdown file as follows to proceed ahead.
+
+```
+python app.py file_name
+```   
+Currently, the front matter should be manually inserted in the markdown file, though the input prompt for the same will be featured.
 
