@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/Mr-Destructive/crossposter/compare/v0.2.6...v0.3.0) (2022-04-01)
+
+
+### Features
+
+* added python scripts ([e505ca8](https://github.com/Mr-Destructive/crossposter/commit/e505ca84585a66f8edb7bf768a696a7ae9f20768))
+
+
+
 ## [0.2.6](https://github.com/Mr-Destructive/crossposter/compare/v0.2.5...v0.2.6) (2022-02-01)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * added python script for devto ([e830f14](https://github.com/Mr-Destructive/crossposter/commit/e830f148f00f2b2cb54dd00530616400471c048f))
-
-
-
-## [0.2.2](https://github.com/Mr-Destructive/crossposter/compare/v0.2.1...v0.2.2) (2021-12-10)
-
-
-### Bug Fixes
-
-* added a single shellscript  ([34e39ba](https://github.com/Mr-Destructive/crossposter/commit/34e39baea465c306cc6e5d7dd153e3c467472719))
 
 
 
