@@ -105,9 +105,9 @@ This is not a perfect script and has a lot of bugs due to encoding the markdown 
 
 ## Crossposter Python Script
 
-A python version of the Crossposter script is in development, it currently supports posting on [dev.to](https://github.com/Mr-Destructive/crossposter/blob/main/python/dev.py) and [codenewbie community](https://github.com/Mr-Destructive/crossposter/blob/main/python/codenewbie.py). Support for hashnode and medium is in pipeline and will be updated soon. 
+A python version of the Crossposter script is in development, it currently supports posting on [dev.to](https://github.com/Mr-Destructive/crossposter/blob/main/pyscript/dev.py) and [codenewbie community](https://github.com/Mr-Destructive/crossposter/blob/main/pyscript/codenewbie.py). Support for hashnode and medium is in pipeline and will be updated soon. 
 
-[crossposter.py](https://github.com/Mr-Destructive/crossposter/tree/main/python)
+[crossposter.py](https://github.com/Mr-Destructive/crossposter/tree/main/pyscript)
 
 Dependencies for the python script:
 
@@ -115,7 +115,7 @@ Dependencies for the python script:
 
 Running the script:
 
-- Make sure to copy the copy the python folder from the [GitHub repo](https://github.com/Mr-Destructive/crossposter/tree/main/python).
+- Make sure to copy the copy the python folder from the [GitHub repo](https://github.com/Mr-Destructive/crossposter/tree/main/pyscript).
 - Create the markdown file in that directory and enter the front-matter in the file.
 - Run the main `app.py` file along with the name of the markdown file as follows to proceed ahead.
 

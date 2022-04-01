@@ -48,32 +48,6 @@ def hashnode(article):
                    }}
                }}
            }}"""
-    # Work in progress
-    # data= '{"query":"mutation {
-    #    createPublicationStory(
-    #        input: {
-    #            title: \"'"$title"'\",
-    #            contentMarkdown: \"'"$body"'\"
-    #            tags: [
-    #                {
-    #                    _id: \"56744721958ef13879b94ffc\",
-    #                    name: \"General Programming\",
-    #                    slug: \"programming\"
-    #                    }
-    #                ]
-    #            coverImageURL:\"'"$cover_image"'\"   }
-    #            publicationId:\"'"$hash_id"'\",
-    #            hideFromHashnodeFeed:false
-    #            ) {
-    #                message
-    #                post{
-    #                    title
-    #                    coverImage
-    #                }
-    #            }
-    #        }
-    #    }' --compressed
-    #
 
     header = {
         "Content-Type": "application/json",
