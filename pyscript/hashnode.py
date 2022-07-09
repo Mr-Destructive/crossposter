@@ -1,3 +1,4 @@
+from pathlib import Path
 import requests
 import json
 import sys
@@ -6,11 +7,42 @@ import sys
 def hashnode(article):
     markdown = sys.argv[1]
 
-    with open("keys.txt", "r") as file:
-        keys = file.readlines()
+    key_file = Path('keys.txt')
+    key_file.touch(exist_ok=True)
+    if key_file.is_file():
 
-    hashnode_keys = keys[3].split("hashnode:")[1].strip()
-    hashnode_id = keys[4].split("hashnode_id:")[1].strip()
+        f = open(key_file, "r")
+        lines = f.readlines()
+        print(key_file)
+        f = open(key_file, "w")
+        lines.append("dev.to:\n")
+        lines.append("medium.com:\n")
+        lines.append("hashnode:\n")
+        lines.append("hashnode_id:\n")
+        lines.append("codenewbie:\n")
+        f.writelines(lines)
+        f.close()
+        
+    with open(key_file, "r") as file:
+        keys = file.readlines()
+        print(keys)
+
+    if keys:
+        hashnode_keys = keys[2].split("hashnode:")[1].strip()
+        hashnode_id = keys[3].split("hashnode_id:")[1].strip()
+    else:
+        hashnode_keys = input("Enter the hashnode Keys: ")
+        hashnode_id = input("Enter your hashnode ID: ")
+
+        f = open(key_file, "r")
+        lines = f.readlines()
+        lines[2] = "hashnode:" + hashnode_keys + "\n"
+        lines[3] = "hashnode_id:" + hashnode_id + "\n"
+
+        f = open(key_file, "w")
+        f.writelines(lines)
+        f.close()
+
     title = str(article["title"])
     subtitle = article["description"]
     canonical_url = article["canonical_url"]
@@ -21,6 +53,7 @@ def hashnode(article):
         "\n", "\\n"
     )  # .replace("\\c", "\c").replace("\r",  "\t")
     content = "".join(content.splitlines())
+    content = str(content.replace("\"", "\'"))
 
     API_ENDPOINT = "https://api.hashnode.com"
 

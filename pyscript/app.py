@@ -9,13 +9,18 @@ file_markdown = sys.argv[1]
 post = frontmatter.load(file_markdown)
 
 article = {}
+if any(key in post for key in ["description", "subtitle"]):
+    article["description"] = post.get("subtitle", "description")
 article["title"] = post["title"]
 article["description"] = post["subtitle"]
-article["canonical_url"] = post["canonical_url"]
-article["cover_image"] = post["cover_image"]
+slug = post.get("slug", "")
+image_url = post.get("image_url", "")
+canonical_url = "https://www.meetgor.com/" + slug
+article["canonical_url"] = canonical_url
+article["cover_image"] = image_url
 article["tags"] = post["tags"]
 # article['date']=post['date']
-article["published"] = post["published"]
+article["published"] = post["status"]
 article["body_markdown"] = post.content
 if "series" in post:
     article["series"] = post["series"]

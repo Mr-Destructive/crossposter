@@ -1,6 +1,5 @@
 import requests
 import json
-import sys
 
 
 def codenewbie(article):
@@ -8,7 +7,7 @@ def codenewbie(article):
     with open("keys.txt", "r") as file:
         keys = file.readlines()
 
-    codenewbie_keys = keys[5]
+    codenewbie_keys = keys[4]
     codenewbie_keys = codenewbie_keys.split("codenewbie:")[1].strip()
 
     API_ENDPOINT = "https://community.codenewbie.org/api/articles"
@@ -34,19 +33,32 @@ def codenewbie(article):
     for key in article:
         post[key] = article[key]
 
-    dev_keys = keys[0]
-    dev_keys = dev_keys.split("dev.to:")[1].strip()
-
-    API_ENDPOINT = "https://dev.to/api/articles"
+    API_ENDPOINT = "https://community.codenewbie.org/api/articles"
 
     data = {
         "Content-Type": "application/json",
         "article": post,
     }
-    print(data)
     header = {"api-key": codenewbie_keys}
-    response = requests.post(
-        url=API_ENDPOINT, json=data, headers={"api-key": codenewbie_keys}
-    ).json()
 
-    print("The article URL is:", response)
+    flag = True
+
+    author_articles_list = json.loads(requests.get("https://community.codenewbie.org/api/articles/me/published", headers=header).content)
+    for article_data in author_articles_list:
+        if article["body_markdown"] == article_data["body_markdown"]:
+            flag = False
+            print("ERRR!!!")
+            break
+        if article["title"] == article_data["title"]:
+            flag = False
+
+    if flag:
+        response = requests.post(
+            url=API_ENDPOINT, json=data, headers=header
+        ).json()
+        if "url" in response:
+            print("The article URL is: ", response["url"])
+        else:
+            print("The article URL is: ", response)
+    else:
+        print("Article already published")
