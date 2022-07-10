@@ -1,3 +1,5 @@
 keys.txt
 config.txt
 temp.json
+**/crossout/
+**/__pycache__/

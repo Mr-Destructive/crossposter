@@ -1,16 +1,45 @@
+import frontmatter
 import requests
 import json
-
+import sys
+from pathlib import Path
 
 def devto(article):
 
     with open("keys.txt", "r") as file:
         keys = file.readlines()
 
-    post = {}
+    
+    with open("config.json", "r") as out:
+        config = json.load(out)
+    
+    output_folder = config["output_folder"]
 
+    output = Path(output_folder)
+    output.mkdir(parents=True, exist_ok=True)
+
+    dev_frontmatter = "---\n"
+    post = {}
     for key in article:
         post[key] = article[key]
+        if key == "body_markdown":
+            dev_frontmatter += f"---\n\n{post[key]}"
+        else:
+            if post[key]:
+                if not key == "published":
+                    dev_frontmatter += f"{key}: \"{post[key]}\"\n"
+                else:
+                    dev_frontmatter += f"{key}: {post[key]}\n"
+        
+    with open(sys.argv[1], "w") as f:
+        f.write(dev_frontmatter)
+
+    filename = post['title'].replace(" ", "_").lower()
+    output_file = output / f"{filename}_dev_post.md"
+
+    with open(output_file, "w") as file:
+        file.write(dev_frontmatter)
+        
 
     dev_keys = keys[0]
     dev_keys = dev_keys.split("dev.to:")[1].strip()
