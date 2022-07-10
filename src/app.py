@@ -1,8 +1,10 @@
 import sys
 import frontmatter
-from dev import devto
-from codenewbie import codenewbie
-from hashnode import hashnode
+from pathlib import Path
+from publications.dev import devto
+from publications.codenewbie import codenewbie
+from publications.hashnode import hashnode
+from publications.medium import medium 
 import json
 
 def get_default_or_input(dictionary, keys):
@@ -17,15 +19,22 @@ post = frontmatter.load(file_markdown)
 with open("config.json", "r") as out:
     config = json.load(out)
 
+output_folder = config["output_folder"]
+
+output = Path(output_folder)
+output.mkdir(parents=True, exist_ok=True)
+
 blog_link = config["blog_link"]
 
 article = {}
 article["title"] = get_default_or_input(post, ["title"])
 article["description"] = get_default_or_input(post, ["subtitle", "description"])
-slug = get_default_or_input(post, ["slug", "canonical_url"])
-image_url = get_default_or_input(post, ["image_url"])
-canonical_url = blog_link + str(slug)
-article["canonical_url"] = canonical_url
+slug = get_default_or_input(post, ["slug","canonical_url"])
+if post["slug"]:
+    slug = blog_link + str(slug)
+image_url = get_default_or_input(post, ["image_url", "cover_image"])
+
+article["canonical_url"] = slug
 article["cover_image"] = image_url
 article["tags"] = get_default_or_input(post, ["tags"])
 # article['date']=post['date']
@@ -42,10 +51,12 @@ print(f"1. dev.to \n2. hashnode.com\n3. codenewbie\n4. medium.com\n")
 opt = input("Where you would like to post? (1/2/3/4) : ")
 
 if opt == "1":
-    devto(article)
+    devto(article, output)
 elif opt == "2":
-    hashnode(article)
+    hashnode(article, output)
 elif opt == "3":
-    codenewbie(article)
+    codenewbie(article, output)
+elif opt == "4":
+    medium(article, output)
 else:
     print("Invalid Option")

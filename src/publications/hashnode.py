@@ -4,7 +4,7 @@ import json
 import sys
 
 
-def hashnode(article):
+def hashnode(article, output):
     markdown = sys.argv[1]
 
     key_file = Path('keys.txt')
@@ -25,7 +25,6 @@ def hashnode(article):
         
     with open(key_file, "r") as file:
         keys = file.readlines()
-        print(keys)
 
     if keys:
         hashnode_keys = keys[2].split("hashnode:")[1].strip()

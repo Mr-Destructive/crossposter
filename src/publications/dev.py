@@ -1,22 +1,12 @@
-import frontmatter
 import requests
 import json
 import sys
-from pathlib import Path
 
-def devto(article):
+def devto(article, output):
 
     with open("keys.txt", "r") as file:
         keys = file.readlines()
 
-    
-    with open("config.json", "r") as out:
-        config = json.load(out)
-    
-    output_folder = config["output_folder"]
-
-    output = Path(output_folder)
-    output.mkdir(parents=True, exist_ok=True)
 
     dev_frontmatter = "---\n"
     post = {}

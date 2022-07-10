@@ -1,7 +1,8 @@
 ---
 title: "Configure Neovim in Lua"
 description: "something"
-canonical_url: "https://www.meetgor.com/https://www.meetgor.com/https://www.meetgor.com/neovim-config-lua"
+canonical_url: "https://www.meetgor.com/neovim-config-lua"
+cover_image: "https://res.cloudinary.com/techstructive-blog/image/upload/v1656522785/blog-media/defer-golang-16.png"
 published: false
 ---
 
