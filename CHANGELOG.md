@@ -1,3 +1,20 @@
+# [0.4.0](https://github.com/Mr-Destructive/crossposter/compare/v0.3.0...v0.4.0) (2022-07-10)
+
+
+### Bug Fixes
+
+* check frontmatter generation ([32400fc](https://github.com/Mr-Destructive/crossposter/commit/32400fc7173ec7a0070b270e68c9a39973bc14d8))
+
+
+### Features
+
+* added medium.com suppport ([a3366f2](https://github.com/Mr-Destructive/crossposter/commit/a3366f2db009f92a27727be756c1f1124f002087))
+* check for existing articles before posting ([3395d25](https://github.com/Mr-Destructive/crossposter/commit/3395d256853bbf185b14969f9de5510d6c4e8b3f))
+* cli command and proper key reading ([c614fbd](https://github.com/Mr-Destructive/crossposter/commit/c614fbd3764d27806c0e6d22dc9bf6dcd52a80a7))
+* python package ([9444520](https://github.com/Mr-Destructive/crossposter/commit/94445206c1522da47909d06d0fdd44abb3d0a0ca))
+
+
+
 # [0.3.0](https://github.com/Mr-Destructive/crossposter/compare/v0.2.6...v0.3.0) (2022-04-01)
 
 
@@ -31,15 +48,6 @@
 ### Bug Fixes
 
 * added python script for codenewbie ([fff2b2c](https://github.com/Mr-Destructive/crossposter/commit/fff2b2c6f2784ea4743c03014f6281c729d5ea11))
-
-
-
-## [0.2.3](https://github.com/Mr-Destructive/crossposter/compare/v0.2.2...v0.2.3) (2022-01-07)
-
-
-### Bug Fixes
-
-* added python script for devto ([e830f14](https://github.com/Mr-Destructive/crossposter/commit/e830f148f00f2b2cb54dd00530616400471c048f))
 
 
 
