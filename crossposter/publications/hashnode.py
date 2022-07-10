@@ -7,40 +7,22 @@ import sys
 def hashnode(article, output):
     markdown = sys.argv[1]
 
-    key_file = Path('keys.txt')
-    key_file.touch(exist_ok=True)
-    if key_file.is_file():
+    for line in open("keys.txt", "r"):
+        if line.startswith("hashnode:"):
+            hashnode_keys = line.split("hashnode:")[1]
+        if line.startswith("hashnode_id:"):
+            hashnode_id = line.split("hashnode_id:")[1]
 
-        f = open(key_file, "r")
-        lines = f.readlines()
-        print(key_file)
-        f = open(key_file, "w")
-        lines.append("dev.to:\n")
-        lines.append("medium.com:\n")
-        lines.append("hashnode:\n")
-        lines.append("hashnode_id:\n")
-        lines.append("codenewbie:\n")
-        f.writelines(lines)
-        f.close()
-        
-    with open(key_file, "r") as file:
-        keys = file.readlines()
-
-    if keys:
-        hashnode_keys = keys[2].split("hashnode:")[1].strip()
-        hashnode_id = keys[3].split("hashnode_id:")[1].strip()
+    if hashnode_keys != "\n":
+        hashnode_keys = hashnode_keys.strip()
     else:
-        hashnode_keys = input("Enter the hashnode Keys: ")
-        hashnode_id = input("Enter your hashnode ID: ")
-
-        f = open(key_file, "r")
-        lines = f.readlines()
-        lines[2] = "hashnode:" + hashnode_keys + "\n"
-        lines[3] = "hashnode_id:" + hashnode_id + "\n"
-
-        f = open(key_file, "w")
-        f.writelines(lines)
-        f.close()
+        hashnode_keys = input("Enter the Hashnode API Key: ")
+        replace_line("keys.txt", 2, f"hashnode: {hashnode_keys}\n")
+    if hashnode_id != "\n":
+        hashnode_id = hashnode_id.strip()
+    else:
+        hashnode_id= input("Enter your Hashnode ID: ")
+        replace_line("keys.txt", 3, f"hashnode_id: {hashnode_id}\n")
 
     title = str(article["title"])
     subtitle = article["description"]
@@ -52,7 +34,7 @@ def hashnode(article, output):
         "\n", "\\n"
     )  # .replace("\\c", "\c").replace("\r",  "\t")
     content = "".join(content.splitlines())
-    content = str(content.replace("\"", "\'"))
+    content = str(content.replace('"', "'"))
 
     API_ENDPOINT = "https://api.hashnode.com"
 

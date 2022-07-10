@@ -1,1 +1,1 @@
-from app import *
+from crossposter import *

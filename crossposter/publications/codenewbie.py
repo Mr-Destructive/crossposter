@@ -1,14 +1,21 @@
 import requests
 import json
 import sys
+from crossposter.utils import replace_line
+
 
 def codenewbie(article, output):
 
-    with open("keys.txt", "r") as file:
-        keys = file.readlines()
+    for line in open("keys.txt", "r"):
+        if line.startswith("codenewbie:"):
+            codenewbie_keys = line.split("codenewbie:")[1]
 
-    codenewbie_keys = keys[4]
-    codenewbie_keys = codenewbie_keys.split("codenewbie:")[1].strip()
+    if codenewbie_keys != "\n":
+        codenewbie_keys = codenewbie_keys.strip()
+    else:
+        codenewbie_keys = input("Enter the Codenewbie API Key: ")
+        replace_line("keys.txt", 4, f"dev.to: {codenewbie_keys}\n")
+
 
     post = {}
 
@@ -34,21 +41,25 @@ def codenewbie(article, output):
         else:
             if post[key]:
                 if not key == "published":
-                    codenewbie_frontmatter += f"{key}: \"{post[key]}\"\n"
+                    codenewbie_frontmatter += f'{key}: "{post[key]}"\n'
                 else:
                     codenewbie_frontmatter += f"{key}: {post[key]}\n"
-        
+
     with open(sys.argv[1], "w") as f:
         f.write(codenewbie_frontmatter)
 
-    filename = post['title'].replace(" ", "_").lower()
+    filename = post["title"].replace(" ", "_").lower()
     output_file = output / f"{filename}_codenewbie_post.md"
 
     with open(output_file, "w") as file:
         file.write(codenewbie_frontmatter)
 
     flag = True
-    author_articles_list = json.loads(requests.get("https://community.codenewbie.org/api/articles/me/published", headers=header).content)
+    author_articles_list = json.loads(
+        requests.get(
+            "https://community.codenewbie.org/api/articles/me/published", headers=header
+        ).content
+    )
     for article_data in author_articles_list:
         if article["body_markdown"] == article_data["body_markdown"]:
             flag = False
