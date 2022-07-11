@@ -1,3 +1,12 @@
+## [0.4.1](https://github.com/Mr-Destructive/crossposter/compare/v0.4.0...v0.4.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* key error in devto ([0da193c](https://github.com/Mr-Destructive/crossposter/commit/0da193ce3862d70711eeeb3cc1348f1c1f73ad61))
+
+
+
 # [0.4.0](https://github.com/Mr-Destructive/crossposter/compare/v0.3.0...v0.4.0) (2022-07-10)
 
 
@@ -39,15 +48,6 @@
 ### Bug Fixes
 
 * moving from sh to py ([71ea64e](https://github.com/Mr-Destructive/crossposter/commit/71ea64e23d4b3ad1851fa583ee42d6eca057986b))
-
-
-
-## [0.2.4](https://github.com/Mr-Destructive/crossposter/compare/v0.2.3...v0.2.4) (2022-01-08)
-
-
-### Bug Fixes
-
-* added python script for codenewbie ([fff2b2c](https://github.com/Mr-Destructive/crossposter/commit/fff2b2c6f2784ea4743c03014f6281c729d5ea11))
 
 
 
