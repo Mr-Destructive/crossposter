@@ -55,9 +55,8 @@ def main():
     opt = input("Where you would like to post? (1/2/3/4) : ")
 
     key_file = Path("keys.txt")
-    key_file.touch(exist_ok=True)
-    if key_file.is_file():
-
+    if not key_file.exists():
+        key_file.touch(exist_ok=True)
         f = open(key_file, "r")
         lines = f.readlines()
         f = open(key_file, "w")
