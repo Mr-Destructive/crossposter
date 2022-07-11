@@ -37,8 +37,6 @@ def devto(article, output):
     with open(output_file, "w") as file:
         file.write(dev_frontmatter)
 
-    dev_keys = dev_keys.split("dev.to:")[1].strip()
-
     API_ENDPOINT = "https://dev.to/api/articles"
 
     data = {

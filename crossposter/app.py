@@ -34,7 +34,7 @@ def main():
     article["title"] = get_default_or_input(post, ["title"])
     article["description"] = get_default_or_input(post, ["subtitle", "description"])
     slug = get_default_or_input(post, ["slug", "canonical_url"])
-    if post["slug"]:
+    if "slug" in post:
         slug = blog_link + str(slug)
     image_url = get_default_or_input(post, ["image_url", "cover_image"])
 
