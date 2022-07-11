@@ -1,3 +1,12 @@
+## [0.4.2](https://github.com/Mr-Destructive/crossposter/compare/v0.4.1...v0.4.2) (2022-07-11)
+
+
+### Bug Fixes
+
+* overwrite keys-file content ([925ae53](https://github.com/Mr-Destructive/crossposter/commit/925ae53021d16f81209f9bae5ca2d0970445d69a))
+
+
+
 ## [0.4.1](https://github.com/Mr-Destructive/crossposter/compare/v0.4.0...v0.4.1) (2022-07-11)
 
 
@@ -39,15 +48,6 @@
 ### Bug Fixes
 
 * added py docs, script file positional paramter ([e7d290c](https://github.com/Mr-Destructive/crossposter/commit/e7d290c03c47c19ed817a2eae6d29fecc2132b32))
-
-
-
-## [0.2.5](https://github.com/Mr-Destructive/crossposter/compare/v0.2.4...v0.2.5) (2022-01-28)
-
-
-### Bug Fixes
-
-* moving from sh to py ([71ea64e](https://github.com/Mr-Destructive/crossposter/commit/71ea64e23d4b3ad1851fa583ee42d6eca057986b))
 
 
 
