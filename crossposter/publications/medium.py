@@ -4,6 +4,7 @@ from crossposter.utils import replace_line
 
 def medium(article, output):
 
+    print("Cross-Posting on medium.com")
     USERNAME_ENDPOINT = "https://api.medium.com/v1/me"
 
     for line in open("keys.txt", "r"):

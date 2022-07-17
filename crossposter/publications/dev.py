@@ -6,6 +6,7 @@ from crossposter.utils import replace_line
 
 def devto(article, output):
 
+    print("Cross-Posting on dev.to")
     dev_keys = []
     for line in open("keys.txt", "r"):
         if line.startswith("dev.to:"):

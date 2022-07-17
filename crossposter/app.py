@@ -18,12 +18,26 @@ def get_default_or_input(dictionary, keys):
 
 
 def main():
-    file_markdown = sys.argv[1]
-    while not Path(file_markdown).exists():
+    parser = argparse.ArgumentParser()
+    if len(sys.argv)<2:
+        file_markdown = input("Enter the filename: ")
+    else:
+        file_markdown = sys.argv[1]
+    while not file_markdown:
         print(f"No File Found with name {file_markdown}!")
         file_markdown = input("Enter the filename: ")
-        if Path(file_markdown).exists():
-            break
+        if file_markdown:
+            if Path(file_markdown).exists():
+                break
+            else:
+                continue
+            
+    parser = argparse.ArgumentParser()
+    parser.add_argument('Path', metavar='path', type=str, nargs='?', const=1, default=file_markdown, help='the path to file')
+    parser.add_argument("--dev", action="store_true", help='Post to dev.to')
+    parser.add_argument("--med", action="store_true", help='Post to medium.com')
+    parser.add_argument("--cdb", action="store_true", help='Post to codenewbie')
+    args = parser.parse_args()
 
     post = frontmatter.load(file_markdown)
 
@@ -77,12 +91,6 @@ def main():
             lines.append("codenewbie:\n")
             f.writelines(lines)
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument('Path', metavar='path',type=str,help='the path to file')
-    parser.add_argument("--dev", action="store_true", help='Post to dev.to')
-    parser.add_argument("--med", action="store_true", help='Post to medium.com')
-    parser.add_argument("--cdb", action="store_true", help='Post to codenewbie')
-    args = parser.parse_args()
 
     if args.dev:
         devto(article, output)

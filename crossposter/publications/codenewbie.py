@@ -6,6 +6,7 @@ from crossposter.utils import replace_line
 
 def codenewbie(article, output):
 
+    print("Cross-Posting on codenewbie.community")
     codenewbie_keys = []
     for line in open("keys.txt", "r"):
         if line.startswith("codenewbie:"):
