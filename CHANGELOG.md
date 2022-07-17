@@ -1,4 +1,4 @@
-## [0.4.3](https://github.com/Mr-Destructive/crossposter/compare/v0.4.2...v0.4.3) (2022-07-17)
+## [0.4.4](https://github.com/Mr-Destructive/crossposter/compare/v0.4.2...v0.4.4) (2022-07-17)
 
 
 ### Bug Fixes
