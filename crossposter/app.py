@@ -1,11 +1,13 @@
 import sys
+import json
+import requests
 import frontmatter
+import argparse
 from pathlib import Path
 from .publications.dev import devto
 from .publications.codenewbie import codenewbie
 from .publications.hashnode import hashnode
 from .publications.medium import medium
-import json
 
 
 def get_default_or_input(dictionary, keys):
@@ -17,6 +19,11 @@ def get_default_or_input(dictionary, keys):
 
 def main():
     file_markdown = sys.argv[1]
+    while not Path(file_markdown).exists():
+        print(f"No File Found with name {file_markdown}!")
+        file_markdown = input("Enter the filename: ")
+        if Path(file_markdown).exists():
+            break
 
     post = frontmatter.load(file_markdown)
 
@@ -34,6 +41,12 @@ def main():
     article["title"] = get_default_or_input(post, ["title"])
     article["description"] = get_default_or_input(post, ["subtitle", "description"])
     slug = get_default_or_input(post, ["slug", "canonical_url"])
+    #while True:
+    #    if validators.url(slug):
+    #        break
+    #    else:
+    #        slug = input("Enter a valid URL: ")
+
     if "slug" in post:
         slug = blog_link + str(slug)
     image_url = get_default_or_input(post, ["image_url", "cover_image"])
@@ -51,33 +64,45 @@ def main():
     if "series" in post:
         article["series"] = post["series"]
 
-    print(f"1. dev.to \n2. hashnode.com\n3. codenewbie\n4. medium.com\n")
-    opt = input("Where you would like to post? (1/2/3/4) : ")
 
     key_file = Path("keys.txt")
     if not key_file.exists():
         key_file.touch(exist_ok=True)
-        f = open(key_file, "r")
-        lines = f.readlines()
-        f = open(key_file, "w")
-        lines.append("dev.to:\n")
-        lines.append("medium.com:\n")
-        lines.append("hashnode:\n")
-        lines.append("hashnode_id:\n")
-        lines.append("codenewbie:\n")
-        f.writelines(lines)
-        f.close()
+        with open(key_file, "r+") as f:
+            lines = f.readlines()
+            lines.append("dev.to:\n")
+            lines.append("medium.com:\n")
+            lines.append("hashnode:\n")
+            lines.append("hashnode_id:\n")
+            lines.append("codenewbie:\n")
+            f.writelines(lines)
 
-    if opt == "1":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('Path', metavar='path',type=str,help='the path to file')
+    parser.add_argument("--dev", action="store_true", help='Post to dev.to')
+    parser.add_argument("--med", action="store_true", help='Post to medium.com')
+    parser.add_argument("--cdb", action="store_true", help='Post to codenewbie')
+    args = parser.parse_args()
+
+    if args.dev:
         devto(article, output)
-    elif opt == "2":
-        hashnode(article, output)
-    elif opt == "3":
-        codenewbie(article, output)
-    elif opt == "4":
+    elif args.med:
         medium(article, output)
+    elif args.cdb:
+        codenewbie(article, output)
     else:
-        print("Invalid Option")
+        print(f"1. dev.to \n2. hashnode.com\n3. codenewbie\n4. medium.com\n")
+        opt = input("Where you would like to post? (1/2/3/4) : ")
+        if opt == "1":
+            devto(article, output)
+        elif opt == "2":
+            hashnode(article, output)
+        elif opt == "3":
+            codenewbie(article, output)
+        elif opt == "4":
+            medium(article, output)
+        else:
+            print("Invalid Option")
 
 
 if __name__ == "__main__":
