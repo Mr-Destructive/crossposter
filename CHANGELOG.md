@@ -1,9 +1,15 @@
-## [0.4.3](https://github.com/Mr-Destructive/crossposter/compare/v0.4.2...v0.4.3) (2022-07-17)
+# [0.5.0](https://github.com/Mr-Destructive/crossposter/compare/v0.4.2...v0.5.0) (2022-07-23)
 
 
 ### Bug Fixes
 
 * CLI improvements ([48f918d](https://github.com/Mr-Destructive/crossposter/commit/48f918d679a37fd3f8f2d1dcddcccf2ffe180c14))
+* error checking in CLI ([0b1a308](https://github.com/Mr-Destructive/crossposter/commit/0b1a308c23ad65bded763229ced64d735d18d34a))
+
+
+### Features
+
+* devto hardwraps ([19be8dc](https://github.com/Mr-Destructive/crossposter/commit/19be8dcce6422b8179f34397cd60c0870082d9a9))
 
 
 
