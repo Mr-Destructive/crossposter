@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/Mr-Destructive/crossposter/compare/v0.5.0...v0.5.1) (2022-07-23)
+
+
+### Bug Fixes
+
+* rich dependency config ([4718e7b](https://github.com/Mr-Destructive/crossposter/commit/4718e7b67c16dd09f33a61e077e7a5eb3621dfb8))
+
+
+
 # [0.5.0](https://github.com/Mr-Destructive/crossposter/compare/v0.4.2...v0.5.0) (2022-07-23)
 
 
@@ -45,15 +54,6 @@
 * check for existing articles before posting ([3395d25](https://github.com/Mr-Destructive/crossposter/commit/3395d256853bbf185b14969f9de5510d6c4e8b3f))
 * cli command and proper key reading ([c614fbd](https://github.com/Mr-Destructive/crossposter/commit/c614fbd3764d27806c0e6d22dc9bf6dcd52a80a7))
 * python package ([9444520](https://github.com/Mr-Destructive/crossposter/commit/94445206c1522da47909d06d0fdd44abb3d0a0ca))
-
-
-
-# [0.3.0](https://github.com/Mr-Destructive/crossposter/compare/v0.2.6...v0.3.0) (2022-04-01)
-
-
-### Features
-
-* added python scripts ([e505ca8](https://github.com/Mr-Destructive/crossposter/commit/e505ca84585a66f8edb7bf768a696a7ae9f20768))
 
 
 
