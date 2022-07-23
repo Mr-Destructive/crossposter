@@ -18,7 +18,6 @@ def codenewbie(article, output):
         codenewbie_keys = input("Enter the Codenewbie API Key: ")
         replace_line("keys.txt", 4, f"dev.to: {codenewbie_keys}\n")
 
-
     post = {}
 
     for key in article:

@@ -21,7 +21,7 @@ def hashnode(article, output):
     if hashnode_id != "\n":
         hashnode_id = hashnode_id.strip()
     else:
-        hashnode_id= input("Enter your Hashnode ID: ")
+        hashnode_id = input("Enter your Hashnode ID: ")
         replace_line("keys.txt", 3, f"hashnode_id: {hashnode_id}\n")
 
     title = str(article["title"])

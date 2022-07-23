@@ -2,6 +2,7 @@ import requests
 import json
 from crossposter.utils import replace_line
 
+
 def medium(article, output):
 
     print("Cross-Posting on medium.com")

@@ -1,7 +1,6 @@
 import requests
 import json
-import sys
-from crossposter.utils import replace_line
+from crossposter.utils import hard_to_soft_wraps, replace_line
 
 
 def devto(article, output):
@@ -31,12 +30,16 @@ def devto(article, output):
                 else:
                     dev_frontmatter += f"{key}: {post[key]}\n"
 
-
     filename = post["title"].replace(" ", "_").lower()
     output_file = output / f"{filename}_dev_post.md"
 
-    with open(output_file, "w") as file:
-        file.write(dev_frontmatter)
+    import re
+
+    lines = hard_to_soft_wraps(dev_frontmatter)
+
+    with open(output_file, "w") as f:
+        f.writelines(lines)
+    print("The DEV frontmatter is generated in the file -> ", output_file)
 
     API_ENDPOINT = "https://dev.to/api/articles"
 

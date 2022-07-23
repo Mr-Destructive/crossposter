@@ -1,8 +1,8 @@
 import sys
 import json
-import requests
 import frontmatter
 import argparse
+from rich import print
 from pathlib import Path
 from .publications.dev import devto
 from .publications.codenewbie import codenewbie
@@ -18,11 +18,12 @@ def get_default_or_input(dictionary, keys):
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    if len(sys.argv)<2:
+    print("[bold green]Crossposter[/ bold green]")
+    if len(sys.argv) < 2:
         file_markdown = input("Enter the filename: ")
     else:
         file_markdown = sys.argv[1]
+
     while not file_markdown:
         print(f"No File Found with name {file_markdown}!")
         file_markdown = input("Enter the filename: ")
@@ -31,14 +32,21 @@ def main():
                 break
             else:
                 continue
-            
-    parser = argparse.ArgumentParser()
-    parser.add_argument('Path', metavar='path', type=str, nargs='?', const=1, default=file_markdown, help='the path to file')
-    parser.add_argument("--dev", action="store_true", help='Post to dev.to')
-    parser.add_argument("--med", action="store_true", help='Post to medium.com')
-    parser.add_argument("--cdb", action="store_true", help='Post to codenewbie')
-    args = parser.parse_args()
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "Path",
+        metavar="path",
+        type=str,
+        nargs="?",
+        const=1,
+        default=file_markdown,
+        help="the path to file",
+    )
+    parser.add_argument("--dev", action="store_true", help="Post to dev.to")
+    parser.add_argument("--med", action="store_true", help="Post to medium.com")
+    parser.add_argument("--cdb", action="store_true", help="Post to codenewbie")
+    args = parser.parse_args()
     post = frontmatter.load(file_markdown)
 
     with open("config.json", "r") as out:
@@ -55,7 +63,7 @@ def main():
     article["title"] = get_default_or_input(post, ["title"])
     article["description"] = get_default_or_input(post, ["subtitle", "description"])
     slug = get_default_or_input(post, ["slug", "canonical_url"])
-    #while True:
+    # while True:
     #    if validators.url(slug):
     #        break
     #    else:
@@ -78,7 +86,6 @@ def main():
     if "series" in post:
         article["series"] = post["series"]
 
-
     key_file = Path("keys.txt")
     if not key_file.exists():
         key_file.touch(exist_ok=True)
@@ -90,7 +97,6 @@ def main():
             lines.append("hashnode_id:\n")
             lines.append("codenewbie:\n")
             f.writelines(lines)
-
 
     if args.dev:
         devto(article, output)
