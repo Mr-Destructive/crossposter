@@ -1,4 +1,7 @@
 import re
+from crossposter.publications.codenewbie import codenewbie_file
+
+from crossposter.publications.dev import devto_file
 
 
 def replace_line(file_name, line_num, text):
@@ -42,3 +45,8 @@ def hard_to_soft_wraps(content):
 
     # returned soft wrapped content
     return content
+
+
+def generate_file(article, output):
+    devto_file(article, output)
+    codenewbie_file(article, output)

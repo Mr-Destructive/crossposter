@@ -4,6 +4,7 @@ import frontmatter
 import argparse
 from rich import print
 from pathlib import Path
+from .utils import generate_file
 from .publications.dev import devto
 from .publications.codenewbie import codenewbie
 from .publications.hashnode import hashnode
@@ -46,6 +47,7 @@ def main():
     parser.add_argument("--dev", action="store_true", help="Post to dev.to")
     parser.add_argument("--med", action="store_true", help="Post to medium.com")
     parser.add_argument("--cdb", action="store_true", help="Post to codenewbie")
+    parser.add_argument("--opf", action="store_true", help="Save to a File")
     args = parser.parse_args()
     post = frontmatter.load(file_markdown)
 
@@ -104,6 +106,8 @@ def main():
         medium(article, output)
     elif args.cdb:
         codenewbie(article, output)
+    elif args.opf:
+        generate_file(article, output)
     else:
         print(f"1. dev.to \n2. hashnode.com\n3. codenewbie\n4. medium.com\n")
         opt = input("Where you would like to post? (1/2/3/4) : ")

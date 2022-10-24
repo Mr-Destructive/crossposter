@@ -1,12 +1,42 @@
 import requests
 import json
 import sys
-from crossposter.utils import replace_line
+from crossposter.utils import hard_to_soft_wraps, replace_line
+
+
+def codenewbie_file(article, output):
+    codenewbie_frontmatter = "---\n"
+    post = {}
+    for key in article:
+        post[key] = article[key]
+        if key == "body_markdown":
+            codenewbie_frontmatter += f"---\n\n{post[key]}"
+        else:
+            if post[key]:
+                if not key == "published":
+                    codenewbie_frontmatter += f'{key}: "{post[key]}"\n'
+                else:
+                    codenewbie_frontmatter += f"{key}: {post[key]}\n"
+
+    lines = hard_to_soft_wraps(codenewbie_frontmatter)
+
+    filename = post["title"].replace(" ", "_").lower()
+    output_file = output / f"{filename}_codenewbie_post.md"
+    with open(output_file, "w") as f:
+        f.writelines(lines)
+    print("The Codenewbie frontmatter is generated in the file -> ", output_file)
+    return post
 
 
 def codenewbie(article, output):
 
-    print("Cross-Posting on codenewbie.community")
+    from rich.progress import Progress
+
+    with Progress() as progress:
+        task = progress.add_task("Crossposting..", total=100)
+        while not progress.finished:
+            progress.update(task, advance=10)
+
     codenewbie_keys = []
     for line in open("keys.txt", "r"):
         if line.startswith("codenewbie:"):
@@ -17,6 +47,8 @@ def codenewbie(article, output):
     else:
         codenewbie_keys = input("Enter the Codenewbie API Key: ")
         replace_line("keys.txt", 4, f"dev.to: {codenewbie_keys}\n")
+
+    post = codenewbie_file(article, output)
 
     post = {}
 
@@ -32,28 +64,6 @@ def codenewbie(article, output):
     header = {"api-key": codenewbie_keys}
 
     flag = True
-
-    codenewbie_frontmatter = "---\n"
-    post = {}
-    for key in article:
-        post[key] = article[key]
-        if key == "body_markdown":
-            codenewbie_frontmatter += f"---\n\n{post[key]}"
-        else:
-            if post[key]:
-                if not key == "published":
-                    codenewbie_frontmatter += f'{key}: "{post[key]}"\n'
-                else:
-                    codenewbie_frontmatter += f"{key}: {post[key]}\n"
-
-    with open(sys.argv[1], "w") as f:
-        f.write(codenewbie_frontmatter)
-
-    filename = post["title"].replace(" ", "_").lower()
-    output_file = output / f"{filename}_codenewbie_post.md"
-
-    with open(output_file, "w") as file:
-        file.write(codenewbie_frontmatter)
 
     flag = True
     author_articles_list = json.loads(

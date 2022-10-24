@@ -3,19 +3,8 @@ import json
 from crossposter.utils import hard_to_soft_wraps, replace_line
 
 
-def devto(article, output):
-
+def devto_file(article, output):
     print("Cross-Posting on dev.to")
-    dev_keys = []
-    for line in open("keys.txt", "r"):
-        if line.startswith("dev.to:"):
-            dev_keys = line.split("dev.to:")[1]
-
-    if dev_keys != "\n":
-        dev_keys = dev_keys.strip()
-    else:
-        dev_keys = input("Enter the DEV API Key: ")
-        replace_line("keys.txt", 0, f"dev.to: {dev_keys}\n")
 
     dev_frontmatter = "---\n"
     post = {}
@@ -36,11 +25,26 @@ def devto(article, output):
     import re
 
     lines = hard_to_soft_wraps(dev_frontmatter)
-
     with open(output_file, "w") as f:
         f.writelines(lines)
     print("The DEV frontmatter is generated in the file -> ", output_file)
+    return post
 
+
+def devto(article, output):
+
+    post = devto_file(article, output)
+
+    dev_keys = []
+    for line in open("keys.txt", "r"):
+        if line.startswith("dev.to:"):
+            dev_keys = line.split("dev.to:")[1]
+
+    if dev_keys != "\n":
+        dev_keys = dev_keys.strip()
+    else:
+        dev_keys = input("Enter the DEV API Key: ")
+        replace_line("keys.txt", 0, f"dev.to: {dev_keys}\n")
     API_ENDPOINT = "https://dev.to/api/articles"
 
     data = {
