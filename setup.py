@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = "0.5.2"
+VERSION = "0.6.0"
 PACKAGE_NAME = "crossposter"
 AUTHOR = "Meet Gor"
 AUTHOR_EMAIL = "gormeet711@gmail.com"
