@@ -1,6 +1,6 @@
 import requests
 import json
-from crossposter.utils import hard_to_soft_wraps, replace_line
+from crossposter.utils import embeds, hard_to_soft_wraps, replace_line
 
 
 def devto_file(article, output):
@@ -19,19 +19,18 @@ def devto_file(article, output):
                 else:
                     dev_frontmatter += f"{key}: {post[key]}\n"
 
+
     filename = post["title"].replace(" ", "_").lower()
     output_file = output / f"{filename}_dev_post.md"
 
-    import re
-
     lines = hard_to_soft_wraps(dev_frontmatter)
-    with open(output_file, "w") as f:
+    with open(output_file, 'w') as f:
         f.writelines(lines)
     print("The DEV frontmatter is generated in the file -> ", output_file)
     return post
 
 
-def devto(article, output):
+def devto(article, output, allow_embeds=False):
 
     post = devto_file(article, output)
 
@@ -46,6 +45,9 @@ def devto(article, output):
         dev_keys = input("Enter the DEV API Key: ")
         replace_line("keys.txt", 0, f"dev.to: {dev_keys}\n")
     API_ENDPOINT = "https://dev.to/api/articles"
+
+    if allow_embeds:
+        post = embeds(post)
 
     data = {
         "Content-Type": "application/json",
@@ -70,6 +72,8 @@ def devto(article, output):
     flag = True
     # author_data = json.loads(requests.get("https://dev.to/api/users/me", headers=header).content)
     # author_username = author_data["username"]
+
+
     author_articles_list = json.loads(
         requests.get("https://dev.to/api/articles/me/published", headers=header).content
     )
@@ -82,12 +86,14 @@ def devto(article, output):
             flag = False
 
     if flag:
-        response = requests.post(
-            url=API_ENDPOINT, json=data, headers={"api-key": dev_keys}
-        ).json()
+        response = requests.post(url=API_ENDPOINT, json=data, headers={"api-key": dev_keys}).json()
         if "url" in response:
             print("The article URL is: ", response["url"])
         else:
             print("The article URL is: ", response)
     else:
         print("Article already published")
+
+
+def generate_devto_file(article, output):
+    devto_file(article, output)

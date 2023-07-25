@@ -4,12 +4,10 @@ import frontmatter
 import argparse
 from rich import print
 from pathlib import Path
-from .utils import generate_file
-from .publications.dev import devto
+from .publications.dev import devto, generate_devto_file
 from .publications.codenewbie import codenewbie
 from .publications.hashnode import hashnode
 from .publications.medium import medium
-
 
 def get_default_or_input(dictionary, keys):
     for key in keys:
@@ -20,7 +18,7 @@ def get_default_or_input(dictionary, keys):
 
 def main():
     print("[bold green]Crossposter[/ bold green]")
-    if len(sys.argv) < 2:
+    if len(sys.argv)<2:
         file_markdown = input("Enter the filename: ")
     else:
         file_markdown = sys.argv[1]
@@ -35,19 +33,12 @@ def main():
                 continue
 
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "Path",
-        metavar="path",
-        type=str,
-        nargs="?",
-        const=1,
-        default=file_markdown,
-        help="the path to file",
-    )
-    parser.add_argument("--dev", action="store_true", help="Post to dev.to")
-    parser.add_argument("--med", action="store_true", help="Post to medium.com")
-    parser.add_argument("--cdb", action="store_true", help="Post to codenewbie")
-    parser.add_argument("--opf", action="store_true", help="Save to a File")
+    parser.add_argument('Path', metavar='path', type=str, nargs='?', const=1, default=file_markdown, help='the path to file')
+    parser.add_argument("--dev", action="store_true", help='Post to dev.to')
+    parser.add_argument("--med", action="store_true", help='Post to medium.com')
+    parser.add_argument("--cdb", action="store_true", help='Post to codenewbie')
+    parser.add_argument("--output-file", action="store_true", help="Save to a File")
+    parser.add_argument("--embeds", action="store_true", help="Enable Embeds(only for devto/codenewbie)")
     args = parser.parse_args()
     post = frontmatter.load(file_markdown)
 
@@ -65,13 +56,14 @@ def main():
     article["title"] = get_default_or_input(post, ["title"])
     article["description"] = get_default_or_input(post, ["subtitle", "description"])
     slug = get_default_or_input(post, ["slug", "canonical_url"])
-    # while True:
+    #while True:
     #    if validators.url(slug):
     #        break
     #    else:
     #        slug = input("Enter a valid URL: ")
 
-    if "slug" in post:
+    if "slug" in post.keys():
+        print(blog_link)
         slug = blog_link + str(slug)
     image_url = get_default_or_input(post, ["image_url", "cover_image"])
 
@@ -88,6 +80,7 @@ def main():
     if "series" in post:
         article["series"] = post["series"]
 
+
     key_file = Path("keys.txt")
     if not key_file.exists():
         key_file.touch(exist_ok=True)
@@ -100,14 +93,16 @@ def main():
             lines.append("codenewbie:\n")
             f.writelines(lines)
 
+
+    allow_embeds = args.embeds
     if args.dev:
-        devto(article, output)
+        devto(article, output, allow_embeds)
     elif args.med:
         medium(article, output)
     elif args.cdb:
-        codenewbie(article, output)
+        codenewbie(article, output, allow_embeds)
     elif args.opf:
-        generate_file(article, output)
+        generate_devto_file(article, output)
     else:
         print(f"1. dev.to \n2. hashnode.com\n3. codenewbie\n4. medium.com\n")
         opt = input("Where you would like to post? (1/2/3/4) : ")
